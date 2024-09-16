@@ -11,8 +11,8 @@ export default async function Nav() {
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
       <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-        <div className="bg-gray-200  w-full h-full">
-          <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
+        <div className="bg-blue-700 w-full h-full">
+          <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular text-white">
             <div className="flex-1 basis-0 h-full flex items-center ">
               <div className="h-full">
                 <SideMenu regions={regions} />
@@ -22,7 +22,7 @@ export default async function Nav() {
             <div className="flex items-center h-full">
               <LocalizedClientLink
                 href="/"
-                className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
+                className="txt-compact-xlarge-plus hover:underline uppercase"
                 data-testid="nav-store-link"
               >
                 Snow-Mart
@@ -33,7 +33,7 @@ export default async function Nav() {
               <div className="hidden small:flex items-center gap-x-6 h-full">
                 {process.env.FEATURE_SEARCH_ENABLED && (
                   <LocalizedClientLink
-                    className="hover:text-ui-fg-base"
+                    className="hover:underline"
                     href="/search"
                     scroll={false}
                     data-testid="nav-search-link"
@@ -42,7 +42,7 @@ export default async function Nav() {
                   </LocalizedClientLink>
                 )}
                 <LocalizedClientLink
-                  className="hover:text-ui-fg-base"
+                  className="hover:underline"
                   href="/account"
                   data-testid="nav-account-link"
                 >
@@ -52,7 +52,7 @@ export default async function Nav() {
               <Suspense
                 fallback={
                   <LocalizedClientLink
-                    className="hover:text-ui-fg-base flex gap-2"
+                    className="hover:underline flex gap-2"
                     href="/cart"
                     data-testid="nav-cart-link"
                   >
