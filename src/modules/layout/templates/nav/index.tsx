@@ -1,12 +1,21 @@
 import { Suspense } from "react"
 
-import { listRegions } from "@lib/data"
+import { getCustomer, listRegions } from "@lib/data"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
+import { Avatar } from "@medusajs/ui"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
+  const customer = await getCustomer().catch(() => null)
+
+  const getCustomerName= () => {
+    if (customer?.first_name && customer?.last_name) {
+      return `${customer.first_name[0]}${customer.last_name[0]}`;
+    }
+    return "S";
+  };
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
@@ -42,11 +51,11 @@ export default async function Nav() {
                   </LocalizedClientLink>
                 )}
                 <LocalizedClientLink
-                  className="hover:underline"
+                  className="hover:underline flex items-center gap-2"
                   href="/account"
                   data-testid="nav-account-link"
                 >
-                  Account
+                  <Avatar src="" fallback={getCustomerName()} /> Account
                 </LocalizedClientLink>
               </div>
               <Suspense
